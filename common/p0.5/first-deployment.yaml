@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-first
+spec:
+  selector:
+    matchLabels:
+      app: dep-first
+  template:
+    metadata:
+      labels:
+        app: dep-first
+    spec:
+      containers:
+      - name: dep-first
+        image: wil42/playground:v2
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8888
