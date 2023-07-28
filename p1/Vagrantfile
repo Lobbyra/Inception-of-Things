@@ -1,0 +1,32 @@
+# [config] value is a global parameter, set a property of it will set it to all
+# vms
+#
+# [control] value is a value local to a vm. But you may be able to set the same
+# properties like box or hostname.
+Vagrant.configure("2") do |config|
+
+    config.vm.box = "debian/bullseye64"
+    config.vm.box_url = "debian/bullseye64"
+
+    config.vm.synced_folder "./confs/", "/tmp/hostConfs/"
+
+    config.vm.define "jecaudalS" do |control|
+        control.vm.hostname = "jecaudalS"
+        control.vm.provider "virtualbox" do |v|
+            v.customize ["modifyvm", :id, "--cpus", "10" ]
+            v.customize ["modifyvm", :id, "--memory", "4048" ]
+        end
+        control.vm.network "private_network", ip: "192.168.56.110"
+        control.vm.provision :shell, :path => "scripts/masterEntrypoint.sh"
+    end
+
+    config.vm.define "jecaudalSW" do |control|
+        control.vm.hostname = "jecaudalSW"
+        control.vm.provider "virtualbox" do |v|
+            v.customize ["modifyvm", :id, "--cpus", "10" ]
+            v.customize ["modifyvm", :id, "--memory", "4048" ]
+        end
+        control.vm.network "private_network", ip: "192.168.56.111"
+        control.vm.provision :shell, :path => "scripts/workerEntrypoint.sh"
+    end
+end
