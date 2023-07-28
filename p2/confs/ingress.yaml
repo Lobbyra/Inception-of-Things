@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress
+  labels:
+    name: ingress
+spec:
+  rules:
+    http:
+      paths:
+        path: "/"
+        backend:
+          service:
+            name: app1
+            port:
+              number: 80
