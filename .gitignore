@@ -3,3 +3,4 @@ p1/confs/node-token
 *.log
 p3/kubectl
 .gitignore
+p3/scripts/kubectl
