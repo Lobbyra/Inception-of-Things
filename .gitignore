@@ -1,1 +1,3 @@
 */.vagrant
+p1/confs/node-token
+*.log
