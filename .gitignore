@@ -1,3 +1,5 @@
 */.vagrant
 p1/confs/node-token
 *.log
+p3/kubectl
+.gitignore
