@@ -17,11 +17,10 @@ all: ${DEBIAN_DISK}
 		-net user,hostfwd=tcp::5000-:22,hostfwd=tcp::8080-:80 &
 
 
-${DEBIAN_DISK}: SHELL:=/bin/bash
 ${DEBIAN_DISK}:
 	@bash ./downloadArchive.sh
 	@echo "📦 Decompressing..."
-	@pv debian-12.2.0.qcow2.tar.gz | tar -zxf -
+	@tar -zxf debian-12.2.0.qcow2.tar.gz
 
 clean :
 	rm -rf ${DEBIAN_DISK} debian-12.2.0.qcow2.tar.gz
